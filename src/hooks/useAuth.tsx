@@ -1,5 +1,5 @@
 
-import { createContext, useState, useContext, ReactNode } from "react";
+import { createContext, useState, useContext, ReactNode, useEffect } from "react";
 import { toast } from "@/components/ui/use-toast";
 
 type User = {
@@ -113,12 +113,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   // Check for existing user on app load
-  useState(() => {
+  useEffect(() => {
     const storedUser = localStorage.getItem("sajumaUser");
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
-  });
+  }, []);
 
   return (
     <AuthContext.Provider
