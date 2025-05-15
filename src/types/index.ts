@@ -14,6 +14,7 @@ export interface Product {
   tags?: string[];
   sizes?: string[];
   colors?: string[];
+  featured?: boolean;
 }
 
 export interface CartItem extends Product {
@@ -29,6 +30,8 @@ export interface Order {
   createdAt: string;
   shippingAddress: Address;
   paymentMethod: string;
+  trackingNumber?: string;
+  deliveryEstimate?: string;
 }
 
 export interface Address {
@@ -46,4 +49,25 @@ export interface User {
   name: string;
   email: string;
   role: 'user' | 'admin';
+  createdAt?: string;
+  lastLogin?: string;
+  ordersCount?: number;
+  totalSpent?: number;
 }
+
+export interface DeliveryZone {
+  id: string;
+  name: string;
+  price: number;
+  estimatedDays: string;
+  active: boolean;
+}
+
+export interface ProductInventory {
+  id: string;
+  productId: string;
+  quantity: number;
+  lastRestocked: string;
+}
+
+export type AdminTab = 'dashboard' | 'products' | 'orders' | 'users' | 'delivery';

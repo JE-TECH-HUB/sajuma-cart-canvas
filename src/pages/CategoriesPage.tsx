@@ -78,10 +78,17 @@ const categories: Category[] = [
   },
   {
     id: "clothing",
-    name: "Clothing & Textiles",
+    name: "Clothing & Fashion",
     image: "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?q=80&w=2670",
     description: "Traditional Nigerian attire, Ankara fabrics, and modern fashion.",
     productCount: 74
+  },
+  {
+    id: "accessories",
+    name: "Accessories & Jewelry",
+    image: "https://images.unsplash.com/photo-1676918555344-e3e03329f46e?q=80&w=2574",
+    description: "Beautiful jewelry, watches, and accessories with Nigerian craftsmanship.",
+    productCount: 45
   },
   {
     id: "beauty",
@@ -96,23 +103,30 @@ const categories: Category[] = [
     image: "https://images.unsplash.com/photo-1550009158-9ebf69173e03?q=80&w=2670",
     description: "Latest electronics, phones, and gadgets at competitive prices.",
     productCount: 48
+  },
+  {
+    id: "homeDecor",
+    name: "Home Decor & Furnishings",
+    image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=2158",
+    description: "Beautiful home decor items, furniture, and traditional Nigerian art.",
+    productCount: 36
   }
 ];
 
 const CategoriesPage = () => {
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       <Navbar />
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 flex-grow">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-800">Product Categories</h1>
-          <p className="text-gray-600 mt-2">Browse our wide selection of departments</p>
+          <h1 className="text-3xl font-bold">Product Categories</h1>
+          <p className="text-muted-foreground mt-2">Browse our wide selection of departments</p>
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {categories.map((category) => (
             <Link to={`/products?category=${category.id}`} key={category.id}>
-              <Card className="overflow-hidden h-full transition-transform hover:scale-[1.02] shadow-sm hover:shadow-md">
+              <Card className="overflow-hidden h-full transition-transform hover:scale-[1.02] shadow-sm hover:shadow-md dark:border-slate-700">
                 <div className="aspect-video overflow-hidden">
                   <img 
                     src={category.image} 
@@ -122,10 +136,10 @@ const CategoriesPage = () => {
                 </div>
                 <CardContent className="p-5">
                   <div className="flex justify-between items-center mb-2">
-                    <h3 className="text-lg font-semibold text-gray-800">{category.name}</h3>
+                    <h3 className="text-lg font-semibold">{category.name}</h3>
                     <span className="text-sm text-sajuma font-medium">{category.productCount} items</span>
                   </div>
-                  <p className="text-sm text-gray-600">{category.description}</p>
+                  <p className="text-sm text-muted-foreground">{category.description}</p>
                 </CardContent>
               </Card>
             </Link>

@@ -6,11 +6,13 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { ShoppingBag, Users, CreditCard, Package } from "lucide-react";
+import { AdminTab } from "@/types";
 
 const DashboardPage = () => {
   const { user, isAuthenticated } = useAuth();
-  const [activeTab, setActiveTab] = useState("overview");
+  const [activeTab, setActiveTab] = useState<AdminTab>("dashboard");
   
   // Redirect if not authenticated
   if (!isAuthenticated) {
@@ -25,23 +27,23 @@ const DashboardPage = () => {
   ];
 
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       <Navbar />
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 flex-grow">
         <div className="mb-6">
-          <h1 className="text-3xl font-bold text-gray-800">Dashboard</h1>
-          <p className="text-gray-600 mt-2">Welcome back, {user?.name}!</p>
+          <h1 className="text-3xl font-bold">Dashboard</h1>
+          <p className="text-muted-foreground mt-2">Welcome back, {user?.name}!</p>
         </div>
         
-        <Tabs defaultValue="overview" className="w-full" onValueChange={setActiveTab}>
+        <Tabs defaultValue="overview" className="w-full" onValueChange={(value) => setActiveTab(value as AdminTab)}>
           <TabsList className="mb-8">
-            <TabsTrigger value="overview">Overview</TabsTrigger>
+            <TabsTrigger value="dashboard">Overview</TabsTrigger>
             <TabsTrigger value="orders">Orders</TabsTrigger>
             <TabsTrigger value="profile">Profile</TabsTrigger>
             {user?.role === "admin" && <TabsTrigger value="admin">Admin Panel</TabsTrigger>}
           </TabsList>
           
-          <TabsContent value="overview" className="space-y-6">
+          <TabsContent value="dashboard" className="space-y-6">
             {/* Stats Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               <Card>
@@ -115,34 +117,34 @@ const DashboardPage = () => {
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-sm">
-                    <thead>
-                      <tr className="border-b">
-                        <th className="px-4 py-2 text-left font-medium">Order ID</th>
-                        <th className="px-4 py-2 text-left font-medium">Date</th>
-                        <th className="px-4 py-2 text-left font-medium">Status</th>
-                        <th className="px-4 py-2 text-right font-medium">Total</th>
-                      </tr>
-                    </thead>
-                    <tbody>
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Order ID</TableHead>
+                        <TableHead>Date</TableHead>
+                        <TableHead>Status</TableHead>
+                        <TableHead className="text-right">Total</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
                       {recentOrders.map((order) => (
-                        <tr key={order.id} className="border-b">
-                          <td className="px-4 py-2 text-sajuma">{order.id}</td>
-                          <td className="px-4 py-2">{order.date}</td>
-                          <td className="px-4 py-2">
+                        <TableRow key={order.id}>
+                          <TableCell className="font-medium text-sajuma">{order.id}</TableCell>
+                          <TableCell>{order.date}</TableCell>
+                          <TableCell>
                             <span className={`inline-block px-2 py-1 rounded-full text-xs ${
                               order.status === "Delivered" 
-                                ? "bg-green-100 text-green-800" 
-                                : "bg-yellow-100 text-yellow-800"
+                                ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100" 
+                                : "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-100"
                             }`}>
                               {order.status}
                             </span>
-                          </td>
-                          <td className="px-4 py-2 text-right font-medium">{order.total}</td>
-                        </tr>
+                          </TableCell>
+                          <TableCell className="text-right font-medium">{order.total}</TableCell>
+                        </TableRow>
                       ))}
-                    </tbody>
-                  </table>
+                    </TableBody>
+                  </Table>
                 </div>
               </CardContent>
             </Card>
@@ -158,36 +160,36 @@ const DashboardPage = () => {
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
-                  <table className="w-full text-sm">
-                    <thead>
-                      <tr className="border-b">
-                        <th className="px-4 py-2 text-left font-medium">Order ID</th>
-                        <th className="px-4 py-2 text-left font-medium">Date</th>
-                        <th className="px-4 py-2 text-left font-medium">Status</th>
-                        <th className="px-4 py-2 text-left font-medium">Items</th>
-                        <th className="px-4 py-2 text-right font-medium">Total</th>
-                      </tr>
-                    </thead>
-                    <tbody>
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Order ID</TableHead>
+                        <TableHead>Date</TableHead>
+                        <TableHead>Status</TableHead>
+                        <TableHead>Items</TableHead>
+                        <TableHead className="text-right">Total</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
                       {[...recentOrders].map((order, index) => (
-                        <tr key={index} className="border-b">
-                          <td className="px-4 py-2 text-sajuma">{order.id}</td>
-                          <td className="px-4 py-2">{order.date}</td>
-                          <td className="px-4 py-2">
+                        <TableRow key={index}>
+                          <TableCell className="font-medium text-sajuma">{order.id}</TableCell>
+                          <TableCell>{order.date}</TableCell>
+                          <TableCell>
                             <span className={`inline-block px-2 py-1 rounded-full text-xs ${
                               order.status === "Delivered" 
-                                ? "bg-green-100 text-green-800" 
-                                : "bg-yellow-100 text-yellow-800"
+                                ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100" 
+                                : "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-100"
                             }`}>
                               {order.status}
                             </span>
-                          </td>
-                          <td className="px-4 py-2">{index === 0 ? 5 : index === 1 ? 3 : 2} items</td>
-                          <td className="px-4 py-2 text-right font-medium">{order.total}</td>
-                        </tr>
+                          </TableCell>
+                          <TableCell>{index === 0 ? 5 : index === 1 ? 3 : 2} items</TableCell>
+                          <TableCell className="text-right font-medium">{order.total}</TableCell>
+                        </TableRow>
                       ))}
-                    </tbody>
-                  </table>
+                    </TableBody>
+                  </Table>
                 </div>
               </CardContent>
               <CardFooter className="flex justify-end">

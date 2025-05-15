@@ -54,10 +54,10 @@ export default {
 					foreground: 'hsl(var(--card-foreground))'
 				},
 				sajuma: {
-					DEFAULT: '#2E7D32',  // Green primary color
-					light: '#4CAF50',    // Light green
-					dark: '#1B5E20',     // Dark green
-					accent: '#FF8F00'    // Warm accent color (amber)
+					DEFAULT: '#e63946',  // Red primary color
+					light: '#f1faee',    // White light color
+					dark: '#1d3557',     // Dark blue (for dark theme)
+					accent: '#ffc300'    // Golden accent color
 				}
 			},
 			borderRadius: {
