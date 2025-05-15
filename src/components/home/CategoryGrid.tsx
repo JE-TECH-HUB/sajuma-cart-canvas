@@ -50,17 +50,17 @@ const categories: Category[] = [
 
 export function CategoryGrid() {
   return (
-    <section className="py-12 bg-gray-50 dark:bg-gray-900">
+    <section className="py-12 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-200">Shop by Category</h2>
-          <p className="mt-2 text-gray-600 dark:text-gray-400">Explore our wide range of products</p>
+          <h2 className="text-3xl font-bold text-foreground">Shop by Category</h2>
+          <p className="mt-2 text-muted-foreground">Explore our wide range of products</p>
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {categories.map((category) => (
-            <Link to={`/categories/${category.id}`} key={category.id}>
-              <Card className="overflow-hidden h-full transition-transform hover:scale-[1.02] dark:bg-gray-800 dark:border-gray-700">
+            <Link to={`/item/1`} key={category.id}>
+              <Card className="overflow-hidden h-full transition-transform hover:scale-[1.02]">
                 <div className="aspect-video overflow-hidden">
                   <img 
                     src={category.image} 
@@ -69,8 +69,8 @@ export function CategoryGrid() {
                   />
                 </div>
                 <CardContent className="p-5">
-                  <h3 className="text-lg font-semibold text-gray-800 dark:text-white">{category.name}</h3>
-                  <p className="text-sm text-gray-600 mt-1 dark:text-gray-400">{category.description}</p>
+                  <h3 className="text-lg font-semibold text-foreground">{category.name}</h3>
+                  <p className="text-sm text-muted-foreground mt-1">{category.description}</p>
                 </CardContent>
               </Card>
             </Link>

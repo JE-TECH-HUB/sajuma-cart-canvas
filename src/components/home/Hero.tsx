@@ -25,8 +25,8 @@ export function Hero() {
               </Link>
             </Button>
             <Button asChild variant="outline" className="border-white text-white hover:bg-white hover:text-sajuma-dark">
-              <Link to="/offers">
-                View Offers
+              <Link to="/item/1">
+                View Featured Item
               </Link>
             </Button>
           </div>

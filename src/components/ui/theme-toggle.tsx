@@ -18,13 +18,13 @@ export function ThemeToggle() {
           variant="ghost" 
           size="icon" 
           onClick={toggleTheme} 
-          className="rounded-full"
-          aria-label="Toggle theme"
+          className="rounded-full hover:bg-muted"
+          aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
         >
           {theme === "dark" ? (
             <Sun className="h-5 w-5 text-sajuma-accent" />
           ) : (
-            <Moon className="h-5 w-5" />
+            <Moon className="h-5 w-5 text-sajuma-dark" />
           )}
         </Button>
       </TooltipTrigger>
