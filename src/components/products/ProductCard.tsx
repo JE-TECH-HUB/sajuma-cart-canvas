@@ -24,9 +24,14 @@ export function ProductCard({ product }: ProductCardProps) {
   const discountedPrice = product.discount 
     ? product.price * (1 - product.discount / 100) 
     : product.price;
+    
+  // Format price in Naira
+  const formatPrice = (price: number): string => {
+    return `₦${price.toLocaleString('en-NG')}`;
+  };
 
   return (
-    <Card className="overflow-hidden flex flex-col h-full transition-all hover:shadow-lg">
+    <Card className="overflow-hidden flex flex-col h-full transition-all hover:shadow-lg dark:bg-gray-800 dark:border-gray-700">
       <Link to={`/products/${product.id}`} className="relative block">
         <div className="aspect-square overflow-hidden">
           <img 
@@ -53,22 +58,22 @@ export function ProductCard({ product }: ProductCardProps) {
       <div className="p-4 flex flex-col flex-1">
         <div className="flex-1">
           <Link to={`/products/${product.id}`}>
-            <h3 className="font-semibold text-gray-800 hover:text-sajuma transition-colors">
+            <h3 className="font-semibold text-gray-800 hover:text-sajuma transition-colors dark:text-white dark:hover:text-sajuma-accent">
               {product.name}
             </h3>
           </Link>
-          <p className="text-sm text-gray-600 mt-1 line-clamp-2">{product.description}</p>
+          <p className="text-sm text-gray-600 mt-1 line-clamp-2 dark:text-gray-400">{product.description}</p>
         </div>
         
         <div className="mt-4 flex items-center justify-between">
           <div>
             {product.discount > 0 ? (
               <div className="flex items-center gap-2">
-                <span className="font-bold text-sajuma-dark">${discountedPrice.toFixed(2)}</span>
-                <span className="text-gray-500 text-sm line-through">${product.price.toFixed(2)}</span>
+                <span className="font-bold text-sajuma-dark dark:text-white">{formatPrice(discountedPrice)}</span>
+                <span className="text-gray-500 text-sm line-through dark:text-gray-400">{formatPrice(product.price)}</span>
               </div>
             ) : (
-              <span className="font-bold text-sajuma-dark">${product.price.toFixed(2)}</span>
+              <span className="font-bold text-sajuma-dark dark:text-white">{formatPrice(product.price)}</span>
             )}
           </div>
           

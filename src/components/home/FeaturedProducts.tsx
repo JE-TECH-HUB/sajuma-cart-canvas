@@ -11,7 +11,7 @@ const featuredProducts: Product[] = [
     id: "1",
     name: "Organic Avocado",
     description: "Fresh organic avocados from local farms",
-    price: 2.99,
+    price: 1200,
     image: "https://images.unsplash.com/photo-1519162808019-7de1683fa2ad?q=80&w=2676",
     category: "fruits",
     inStock: true,
@@ -22,7 +22,7 @@ const featuredProducts: Product[] = [
     id: "2",
     name: "Fresh Milk",
     description: "Grade A fresh whole milk (1 gallon)",
-    price: 3.99,
+    price: 1500,
     image: "https://images.unsplash.com/photo-1550583724-b2692b85b150?q=80&w=2574",
     category: "dairy",
     inStock: true,
@@ -31,69 +31,69 @@ const featuredProducts: Product[] = [
   },
   {
     id: "3",
-    name: "Whole Wheat Bread",
-    description: "Freshly baked whole wheat bread",
-    price: 3.49,
-    image: "https://images.unsplash.com/photo-1598373182133-52452f7691ef?q=80&w=2670",
-    category: "bakery",
+    name: "Casual T-Shirt",
+    description: "Comfortable cotton t-shirt for everyday wear",
+    price: 5000,
+    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=2080",
+    category: "clothing",
+    inStock: true,
+    isOrganic: false,
+    discount: 15
+  },
+  {
+    id: "4",
+    name: "Leather Wallet",
+    description: "Handcrafted genuine leather wallet",
+    price: 7500,
+    image: "https://images.unsplash.com/photo-1627123424574-724758594e93?q=80&w=2574",
+    category: "accessories",
     inStock: true,
     isOrganic: false,
     discount: 0
   },
   {
-    id: "4",
-    name: "Organic Chicken",
-    description: "Organic free-range chicken (per lb)",
-    price: 7.99,
-    image: "https://images.unsplash.com/photo-1610515451813-5b9164165c49?q=80&w=2670",
-    category: "meat",
+    id: "5",
+    name: "Organic Strawberries",
+    description: "Sweet and juicy organic strawberries",
+    price: 1800,
+    image: "https://images.unsplash.com/photo-1587393855524-087f83d95bc9?q=80&w=2574",
+    category: "fruits",
     inStock: true,
     isOrganic: true,
     discount: 10
   },
   {
-    id: "5",
-    name: "Organic Strawberries",
-    description: "Sweet and juicy organic strawberries",
-    price: 4.99,
-    image: "https://images.unsplash.com/photo-1587393855524-087f83d95bc9?q=80&w=2574",
-    category: "fruits",
-    inStock: true,
-    isOrganic: true,
-    discount: 15
-  },
-  {
     id: "6",
-    name: "Pasta Sauce",
-    description: "Authentic Italian tomato pasta sauce",
-    price: 3.99,
-    image: "https://images.unsplash.com/photo-1595033861445-197b4d8ef9ff?q=80&w=2670",
-    category: "pantry",
+    name: "Smart Watch",
+    description: "Water resistant smart watch with health tracking",
+    price: 25000,
+    image: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?q=80&w=2672",
+    category: "electronics",
     inStock: true,
     isOrganic: false,
     discount: 5
   },
   {
     id: "7",
-    name: "Fresh Orange Juice",
-    description: "Freshly squeezed orange juice (1L)",
-    price: 5.49,
-    image: "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?q=80&w=2574",
-    category: "beverages",
+    name: "Running Shoes",
+    description: "Lightweight running shoes with cushioned soles",
+    price: 18000,
+    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2670",
+    category: "footwear",
     inStock: true,
-    isOrganic: true,
+    isOrganic: false,
     discount: 0
   },
   {
     id: "8",
-    name: "Assorted Bell Peppers",
-    description: "Colorful bell peppers (pack of 3)",
-    price: 3.99,
-    image: "https://images.unsplash.com/photo-1615485925600-97237c4fc1ec?q=80&w=2574",
-    category: "fruits",
+    name: "Wireless Headphones",
+    description: "Noise cancelling wireless headphones",
+    price: 15000,
+    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=2670",
+    category: "electronics",
     inStock: true,
     isOrganic: false,
-    discount: 0
+    discount: 20
   }
 ];
 
@@ -107,22 +107,27 @@ export function FeaturedProducts() {
     });
   };
   
+  // Format price in Naira
+  const formatPrice = (price: number): string => {
+    return `₦${price.toLocaleString('en-NG')}`;
+  };
+  
   return (
     <section className="py-12">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h2 className="text-3xl font-bold text-gray-800">Featured Products</h2>
-            <p className="mt-2 text-gray-600">Check out our most popular products</p>
+            <h2 className="text-3xl font-bold text-gray-800 dark:text-gray-200">Featured Products</h2>
+            <p className="mt-2 text-gray-600 dark:text-gray-400">Check out our most popular products</p>
           </div>
-          <Button asChild variant="outline">
+          <Button asChild variant="outline" className="dark:border-gray-600 dark:text-gray-300">
             <Link to="/products">View All</Link>
           </Button>
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {featuredProducts.map((product) => (
-            <Card key={product.id} className="overflow-hidden flex flex-col h-full animate-slide-up">
+            <Card key={product.id} className="overflow-hidden flex flex-col h-full animate-slide-up dark:bg-gray-800 dark:border-gray-700">
               <Link to={`/products/${product.id}`} className="relative block">
                 <div className="aspect-square overflow-hidden">
                   <img 
@@ -146,27 +151,27 @@ export function FeaturedProducts() {
               <div className="p-4 flex flex-col flex-1">
                 <div className="flex-1">
                   <Link to={`/products/${product.id}`}>
-                    <h3 className="font-semibold text-gray-800 hover:text-sajuma transition-colors">
+                    <h3 className="font-semibold text-gray-800 hover:text-sajuma transition-colors dark:text-white dark:hover:text-sajuma-accent">
                       {product.name}
                     </h3>
                   </Link>
-                  <p className="text-sm text-gray-600 mt-1 line-clamp-2">{product.description}</p>
+                  <p className="text-sm text-gray-600 mt-1 line-clamp-2 dark:text-gray-400">{product.description}</p>
                 </div>
                 
                 <div className="flex items-center justify-between mt-4">
                   <div>
                     {product.discount > 0 ? (
                       <div className="flex items-center gap-2">
-                        <span className="font-bold text-sajuma-dark">
-                          ${(product.price * (1 - product.discount / 100)).toFixed(2)}
+                        <span className="font-bold text-sajuma-dark dark:text-white">
+                          {formatPrice(product.price * (1 - product.discount / 100))}
                         </span>
-                        <span className="text-gray-500 text-sm line-through">
-                          ${product.price.toFixed(2)}
+                        <span className="text-gray-500 text-sm line-through dark:text-gray-400">
+                          {formatPrice(product.price)}
                         </span>
                       </div>
                     ) : (
-                      <span className="font-bold text-sajuma-dark">
-                        ${product.price.toFixed(2)}
+                      <span className="font-bold text-sajuma-dark dark:text-white">
+                        {formatPrice(product.price)}
                       </span>
                     )}
                   </div>

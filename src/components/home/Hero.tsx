@@ -13,10 +13,10 @@ export function Hero() {
             Fresh Deals Every Day
           </span>
           <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-            Fresh Groceries Delivered to Your Door
+            Quality Products Delivered to Your Door
           </h1>
           <p className="text-lg text-gray-200 mb-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            Sajuma brings you quality groceries from local farmers and brands. Shop fresh, eat healthy, and save time.
+            Sajuma brings you quality products from local providers and global brands. Shop fresh, eat healthy, dress well, and save time.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-in" style={{ animationDelay: '0.3s' }}>
             <Button asChild className="bg-sajuma-accent hover:bg-sajuma text-white font-semibold">
