@@ -123,7 +123,12 @@ export function Navbar() {
               </div>
             )}
 
-            <Button variant="ghost" size="icon" className="md:hidden" onClick={toggleMobileMenu}>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="md:hidden bg-black text-sajuma-accent hover:bg-black/90 hover:text-sajuma-accent/90" 
+              onClick={toggleMobileMenu}
+            >
               {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
           </div>
